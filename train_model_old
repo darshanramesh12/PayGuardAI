@@ -1,0 +1,80 @@
+import numpy as np
+import joblib
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, accuracy_score
+
+# Reproducible synthetic transaction dataset
+np.random.seed(42)
+
+number_of_transactions = 10000
+
+amount = np.random.exponential(5000, number_of_transactions)
+merchant_risk = np.random.randint(0, 2, number_of_transactions)
+international = np.random.randint(0, 2, number_of_transactions)
+high_velocity = np.random.randint(0, 2, number_of_transactions)
+unusual_hour = np.random.randint(0, 2, number_of_transactions)
+
+# Create transaction features
+X = np.column_stack((
+    amount,
+    merchant_risk,
+    international,
+    high_velocity,
+    unusual_hour
+))
+
+# Generate synthetic labels for demonstration
+fraud_probability = (
+    0.05
+    + 0.20 * merchant_risk
+    + 0.15 * international
+    + 0.30 * high_velocity
+    + 0.15 * unusual_hour
+    + 0.000005 * amount
+)
+
+fraud_probability = np.clip(fraud_probability, 0.02, 0.95)
+
+y = (
+    np.random.random(number_of_transactions)
+    < fraud_probability
+).astype(int)
+
+# Split training and testing data
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.20,
+    random_state=42,
+    stratify=y
+)
+
+# Create machine learning model
+model = RandomForestClassifier(
+    n_estimators=150,
+    max_depth=10,
+    random_state=42,
+    class_weight="balanced"
+)
+
+# Train model
+print("Training PayGuard AI model...")
+
+model.fit(X_train, y_train)
+
+# Evaluate model
+predictions = model.predict(X_test)
+
+print("\nModel Accuracy:")
+print(accuracy_score(y_test, predictions))
+
+print("\nClassification Report:")
+print(classification_report(y_test, predictions))
+
+# Save trained model
+joblib.dump(model, "fraud_model.pkl")
+
+print("\nModel saved successfully!")
+print("File: fraud_model.pkl")

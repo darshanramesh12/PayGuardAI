@@ -1,9 +1,9 @@
-# PayGuard AI 🛡️
+# 🛡️ PayGuard AI
 ### AI-Powered Payment Fraud Detection System
 
-PayGuard AI is an AI-powered payment fraud detection prototype designed to identify potentially suspicious transactions using machine learning and risk analysis.
+PayGuard AI is an AI-powered payment fraud detection prototype that identifies potentially suspicious transactions using machine learning.
 
-The system analyzes transaction details, calculates a risk score between 0 and 100, classifies the transaction, and provides reasons for its risk assessment.
+It analyzes transaction details, calculates a risk score between 0 and 100, classifies transactions, and provides reasons for its risk assessment.
 
 ## 🚀 Features
 
@@ -11,13 +11,13 @@ The system analyzes transaction details, calculates a risk score between 0 and 1
 - Random Forest machine learning model.
 - Risk score from 0 to 100.
 - Three transaction classifications:
-  - Safe
-  - Review
-  - Fraud Risk
-- Detection of suspicious merchants.
-- International transaction risk checks.
-- High-velocity transaction checks.
-- Unusual-hour transaction checks.
+  - 🟢 Safe
+  - 🟡 Review
+  - 🔴 Fraud Risk
+- Unknown merchant detection.
+- International transaction risk detection.
+- High-velocity transaction detection.
+- Unusual-hour transaction detection.
 - Security alerts.
 - Transaction history.
 - Dashboard statistics.
@@ -25,24 +25,24 @@ The system analyzes transaction details, calculates a risk score between 0 and 1
 
 ## 🛠️ Technologies Used
 
-**Frontend**
+### Frontend
 - React.js
 - JavaScript
 - CSS
 - Vite
 
-**Backend**
+### Backend
 - Python
 - FastAPI
 - Uvicorn
 
-**Machine Learning**
+### Machine Learning
 - Scikit-learn
 - Random Forest Classifier
 - NumPy
 - Joblib
 
-**Database**
+### Database
 - SQLite
 
 ## 📁 Project Structure
@@ -53,37 +53,46 @@ PayGuardAI/
 ├── backend/
 │   ├── main.py
 │   ├── fraud_model.pkl
-│   ├── payguard.db
 │   ├── train_model.py/
 │   │   └── train_model.py
 │   └── venv/
 │
 ├── frontend/
+│   ├── public/
 │   ├── src/
 │   │   ├── App.jsx
-│   │   └── App.css
+│   │   ├── App.css
+│   │   └── main.jsx
 │   ├── package.json
-│   └── index.html
+│   └── vite.config.js
 │
+├── .gitignore
 └── README.md
 ```
 
 ## ⚙️ Installation and Setup
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/darshanramesh12/PayGuardAI.git
 cd PayGuardAI
 ```
 
-### 2. Start the Backend
+### 2. Set Up the Backend
+
+Open a terminal:
 
 ```powershell
 cd backend
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install fastapi uvicorn scikit-learn numpy joblib
+```
+
+### 3. Run the Backend
+
+```powershell
 python -m uvicorn main:app --reload
 ```
 
@@ -95,29 +104,29 @@ API Documentation:
 
 http://127.0.0.1:8000/docs
 
-### 3. Start the Frontend
+### 4. Set Up the Frontend
 
 Open another terminal:
 
-```bash
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-Open the frontend:
+Open the frontend in your browser:
 
 http://localhost:5174
 
 ## 🔍 How It Works
 
 1. The user enters transaction information.
-2. The system extracts transaction risk indicators.
+2. The system collects transaction risk indicators.
 3. The Random Forest model analyzes the transaction.
 4. A risk score is calculated.
 5. The transaction is classified as Safe, Review, or Fraud Risk.
 6. Detection reasons and recommendations are displayed.
-7. Transaction information is stored in SQLite.
+7. Transaction information is stored in the SQLite database.
 
 ## 🧪 Sample Test Cases
 
@@ -126,20 +135,38 @@ http://localhost:5174
 | Amazon | ₹2,400 | Safe |
 | Unknown Store | ₹85,000 | Fraud Risk |
 
-The high-risk demonstration includes international, high-velocity, and unusual-hour indicators.
+The high-risk demonstration includes:
+- International transaction enabled.
+- Multiple transactions in a short time enabled.
+- Unusual transaction hour enabled.
 
 ## 🎯 Project Objective
 
-The main objective of PayGuard AI is to demonstrate how machine learning can support payment fraud detection by identifying suspicious transaction patterns and providing understandable risk assessments.
+The main objective of PayGuard AI is to demonstrate how machine learning can help identify suspicious payment transactions and provide understandable risk assessments.
+
+## 🔮 Future Enhancements
+
+- Real-time payment monitoring.
+- Improved machine learning using real-world datasets.
+- Advanced fraud analytics.
+- Email and SMS security notifications.
+- Cloud deployment.
+- Integration with payment gateways.
 
 ## ⚠️ Disclaimer
 
-This project uses a synthetic demonstration dataset. Its machine learning model is intended for educational and hackathon demonstration purposes only.
+This project uses a synthetic demonstration dataset. The machine learning model is intended for educational and hackathon demonstration purposes only.
 
-It has not been validated against real-world banking fraud data and should not be used for actual financial decisions.
+Its performance has not been validated against real-world banking fraud data. It should not be used to make actual financial decisions.
 
-## 👨‍💻 Project Status
+## 📌 Project Status
 
-Hackathon prototype – Core fraud detection, backend integration, frontend dashboard, and transaction storage implemented.
+**Hackathon Prototype – Core Implementation Completed**
 
-Further improvements and deployment are planned.
+The frontend, backend, machine learning model, transaction analysis, risk classification, and transaction storage have been implemented.
+
+## 👨‍💻 Author
+
+**Darshan Ramesh**
+
+GitHub: https://github.com/darshanramesh12
